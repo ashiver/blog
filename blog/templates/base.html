@@ -17,15 +17,15 @@
         <!-- Bootstrap -->
         <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
         <!-- Blog -->
-        <link rel="stylesheet" href="{{ url_for('static', filename='css/main.ss') }}">
-        
-        <!-- Javascript -->
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+
+        <!-- JavaScript -->
         <!-- jQuery -->
         <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
         <!-- Bootstrap -->
         <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
     </head>
-    
+
     <body>
         <div class="navbar navbar-inverse navbar-static-top" role="navigation">
             <div class="container">
@@ -44,10 +44,9 @@
                 </div>
             </div>
         </div>
-        
+
         <div class="container">
-            {% block content%}{% endblock%}
+            {% block content %}{% endblock %}
         </div>
     </body>
 </html>
-       
