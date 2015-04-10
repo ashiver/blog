@@ -3,27 +3,15 @@ div.metadata {
     font-size: 1.5em;
 }
 
+.social > li{
+  display: inline-block;
+}
+
 .footer{
   color: white;
-  background-color: #5F758C;
+  background-color: black;
   background-size: cover;
   text-align: center;
   margin-top: 3em;
   padding: 4em;
-}
-
-a:link {
-  font-family: "Gentium Book Basic", Georgia, serif;
-  font-size: 1em;
-  font-weight: bold;
-  margin: 2em 0 1em 0;
-  color: #CC0000
-}
-
-a:visited {
-  font-family: "Gentium Book Basic", Georgia, serif;
-  font-size: 1em;
-  font-weight: bold;
-  margin: 2em 0 1em 0;
-  color: #CC0000
 }
