@@ -48,3 +48,47 @@ def add_post_post():
     session.add(post)
     session.commit()
     return redirect(url_for("posts"))
+
+
+# My Routes
+
+@app.route("/post/<id>")
+def post_id_get(id):
+    post = session.query(Post).get(id)
+    return render_template("view_post.html",
+                          post=post
+                          )
+
+@app.route("/post/<id>/edit", methods=["GET"])
+def edit_post_get(id):
+    post = session.query(Post).get(id)
+    return render_template("edit_post.html",
+                          post=post
+                          )
+
+
+@app.route("/post/<id>/edit", methods=["POST"])
+def edit_post_post(id):
+    post = session.query(Post).get(id)
+    post.title = request.form["title"],
+    post.content = content=mistune.markdown(request.form["content"])
+    session.commit()
+    return redirect(url_for("posts"))
+
+
+
+
+@app.route("/post/<id>/delete", methods=["GET"])
+def delete_post_get(id):
+    post = session.query(Post).get(id)
+    return render_template("delete_post.html",
+                          post=post
+                          )
+
+@app.route("/post/<id>/delete", methods=["POST"])
+def delete_post_delete(id):
+    post = session.query(Post).get(id)
+    session.delete(post)
+    session.commit()
+    return redirect(url_for("posts"))
+

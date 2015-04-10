@@ -3,13 +3,19 @@
     <div class="col-md-2 text-right metadata">
         <ul class="list-unstyled">
             <li>
-                {{ post.datetime | dateformat("%d/%m/%y") }}
+                {{ post.datetime | dateformat("%m/%d/%y") }}
+            </li>
+            <li> 
+                <a href="{{ url_for('posts') }}post/{{ post.id | slash }}edit">Edit</a>
+            </li>
+            <li> 
+                <a href="{{ url_for('posts') }}post/{{ post.id | slash }}delete">Delete</a>
             </li>
         </ul>
     </div>
     <div class="col-md-10">
         <h1>
-            {{ post.title }}
+            <a href="{{ url_for('posts') }}post/{{ post.id }}">{{ post.title }}</a>
         </h1>
         {{ post.content | safe }}
     </div>
