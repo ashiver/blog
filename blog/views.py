@@ -1,6 +1,6 @@
 from flask import render_template, request, redirect, url_for, flash
 import mistune
-from flask.ext.login import login_user, login_required, current_user
+from flask.ext.login import login_user, login_required, current_user, logout_user
 from werkzeug.security import check_password_hash
 
 from blog import app
@@ -73,11 +73,15 @@ def post_id_get(id):
 @app.route("/post/<id>/edit", methods=["GET"])
 @login_required
 def edit_post_get(id):
+    user = current_user
     post = session.query(Post).get(id)
-    return render_template("edit_post.html",
+    if user.id == post.author_id:
+        return render_template("edit_post.html",
                           post=post
                           )
-
+    else:
+        flash("Cannot modify other users' posts", "danger")
+        return redirect(url_for("posts"))
 
 @app.route("/post/<id>/edit", methods=["POST"])
 @login_required
@@ -94,10 +98,15 @@ def edit_post_post(id):
 @app.route("/post/<id>/delete", methods=["GET"])
 @login_required
 def delete_post_get(id):
+    user = current_user
     post = session.query(Post).get(id)
-    return render_template("delete_post.html",
+    if user.id == post.author_id:
+        return render_template("delete_post.html",
                           post=post
                           )
+    else:
+        flash("Cannot modify other users' posts", "danger")
+        return redirect(url_for("posts"))
 
 
 
@@ -109,6 +118,8 @@ def delete_post_delete(id):
     session.delete(post)
     session.commit()
     return redirect(url_for("posts"))
+
+
 
 
 
@@ -131,3 +142,19 @@ def login_post():
 
     login_user(user)
     return redirect(request.args.get('next') or url_for("posts"))
+
+
+
+
+@app.route("/logout", methods=["GET"])
+def logout_get():
+    return render_template("logout.html")
+
+
+
+
+
+@app.route("/logout", methods=["POST"])
+def logout_post():
+    logout_user()
+    return redirect(url_for("posts"))
