@@ -100,7 +100,7 @@ def edit_post_post(id):
 def delete_post_get(id):
     user = current_user
     post = session.query(Post).get(id)
-    if user.id == post.author_id:
+    if user.id == post.author_id or post.author_id == None:
         return render_template("delete_post.html",
                           post=post
                           )
