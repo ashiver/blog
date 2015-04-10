@@ -4,8 +4,9 @@
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="icon" type="image/x-icon" href="https://sites.google.com/site/anthonyshiverphilosophy/a.ico">
                                                                             
-        <title>Blogful</title>
+        <title>AnthonyDevBlog</title>
         
         <!-- CSS -->
         <!-- Bootstrap -->
@@ -30,7 +31,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="{{ url_for('posts') }}">Blogful</a>
+                    <a class="navbar-brand" href="{{ url_for('posts') }}">DevBlog</a>
                     {% if current_user.is_authenticated() %}
                     <a class="navbar-brand" href="/post/add">Add Post</a>
                     <a class="navbar-brand" href="/logout">Logout</a>
