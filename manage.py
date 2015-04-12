@@ -3,7 +3,7 @@ from flask.ext.script import Manager
 from getpass import getpass
 from werkzeug.security import generate_password_hash
 from flask.ext.migrate import Migrate, MigrateCommand
-from blog.models import Post, User
+from blog.models import Post, User, Comment
 from blog.database import session, Base
 
 from blog import app
@@ -26,6 +26,8 @@ def seed():
         )
         session.add(post)
     session.commit()
+    
+
     
 @manager.command
 def adduser():
