@@ -121,7 +121,7 @@ def post_id_postcomment(id):
     mail=Mail(app)
     message = Message("A comment was posted on AnthonyDevBlog",
                   sender="anthony.lee.shiver@gmail.com",
-                  recipients=["anthony@anthonyshiver.com"])
+                  recipients=["anthony.lee.shiver@gmail.com"])
     
     mail.send(message)
     
@@ -295,5 +295,13 @@ def signup_post():
     session.add(user)
     session.commit()
     login_user(user)
+    
+    mail=Mail(app)
+    message = Message("A new user signed up on AnthonyDevBlog",
+                  sender="anthony.lee.shiver@gmail.com",
+                  recipients=["anthony.lee.shiver@gmail.com"])
+    
+    mail.send(message)
+    
     flash("Success! You may now login and start commenting", "info")
     return redirect(url_for("posts"))
