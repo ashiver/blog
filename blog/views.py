@@ -5,7 +5,7 @@ from flask_mail import Message
 from werkzeug.security import check_password_hash, generate_password_hash
 
 
-from blog import app
+from blog import app, mail
 from .database import session
 from .models import Post, User, Comment
 
@@ -117,6 +117,7 @@ def post_id_postcomment(id):
     )
     session.add(comment)
     session.commit()
+    
     message = Message("A comment was posted on AnthonyDevBlog",
                   sender="anthony.lee.shiver@gmail.com",
                   recipients=["anthony@anthonyshiver.com"])
