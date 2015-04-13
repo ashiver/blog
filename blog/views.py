@@ -118,6 +118,7 @@ def post_id_postcomment(id):
     session.add(comment)
     session.commit()
     message = Message("A comment was posted on AnthonyDevBlog",
+                  sender="anthony.lee.shiver@gmail.com",
                   recipients=["anthony@anthonyshiver.com"])
     mail.send(message)
     flash("Your comment posted successfully", "info")
