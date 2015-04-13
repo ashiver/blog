@@ -297,14 +297,15 @@ def signup_post():
     login_user(user)
     
     mail=Mail(app)
-    message = Message("A new user named " + user.name + " signed up on AnthonyDevBlog",
+    message = Message(subject="A new user named " + user.name + " signed up on AnthonyDevBlog",
+                  body="The new user's email address is " + current_user.email,
                   sender="anthony.lee.shiver@gmail.com",
                   recipients=["anthony.lee.shiver@gmail.com"])
     
     mail.send(message)
     
     message = Message(subject="Thanks for signing up to comment on AnthonyDevBlog!",
-                  body="I'm looking forward to your feedback, " + current_user.name,
+                  body="Thanks for signing up to comment on AnthonyDevBlog, " current_user.name "! I'm looking forward to your feedback.",
                   sender="anthony.lee.shiver@gmail.com",
                   recipients=[current_user.email])
     
