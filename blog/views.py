@@ -1,11 +1,11 @@
 from flask import render_template, request, redirect, url_for, flash
 import mistune
 from flask.ext.login import login_user, login_required, current_user, logout_user
-from flask_mail import Message
+from flask.ext.mail import Message
 from werkzeug.security import check_password_hash, generate_password_hash
 
 
-from blog import app, mail
+from blog import app
 from .database import session
 from .models import Post, User, Comment
 
@@ -121,6 +121,7 @@ def post_id_postcomment(id):
     message = Message("A comment was posted on AnthonyDevBlog",
                   sender="anthony.lee.shiver@gmail.com",
                   recipients=["anthony@anthonyshiver.com"])
+    
     mail.send(message)
     flash("Your comment posted successfully", "info")
     return redirect(url_for("posts") + "post/" + str(id))

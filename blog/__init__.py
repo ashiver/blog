@@ -1,6 +1,6 @@
 import os
 from flask import Flask
-from flask_mail import Mail
+from flask.ext.mail import Mail
 
 app = Flask(__name__)
 mail = Mail(app)
