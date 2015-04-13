@@ -119,7 +119,7 @@ def post_id_postcomment(id):
     session.commit()
     
     mail=Mail(app)
-    message = Message("A comment was posted on AnthonyDevBlog",
+    message = Message(current_user.name + " posted a comment on AnthonyDevBlog",
                   sender="anthony.lee.shiver@gmail.com",
                   recipients=["anthony.lee.shiver@gmail.com"])
     
@@ -297,9 +297,16 @@ def signup_post():
     login_user(user)
     
     mail=Mail(app)
-    message = Message("A new user signed up on AnthonyDevBlog",
+    message = Message("A new user named " + user.name + " signed up on AnthonyDevBlog",
                   sender="anthony.lee.shiver@gmail.com",
                   recipients=["anthony.lee.shiver@gmail.com"])
+    
+    mail.send(message)
+    
+    message = Message(subject="Thanks for signing up to comment on AnthonyDevBlog!",
+                  body="I'm looking forward to your feedback, " + current_user.name,
+                  sender="anthony.lee.shiver@gmail.com",
+                  recipients=[current_user.email])
     
     mail.send(message)
     
