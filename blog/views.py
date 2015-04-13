@@ -305,7 +305,7 @@ def signup_post():
     mail.send(message)
     
     message = Message(subject="Thanks for signing up to comment on AnthonyDevBlog!",
-                  body="Thanks for signing up to comment on AnthonyDevBlog, " current_user.name "! I'm looking forward to your feedback.",
+                  body="Thanks for signing up to comment on AnthonyDevBlog, " + current_user.name + "! I'm looking forward to your feedback.",
                   sender="anthony.lee.shiver@gmail.com",
                   recipients=[current_user.email])
     
