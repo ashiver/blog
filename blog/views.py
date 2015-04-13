@@ -117,8 +117,8 @@ def post_id_postcomment(id):
     )
     session.add(comment)
     session.commit()
-    message = Message(subject="User " + author.name + " comment was posted on AnthonyDevBlog",
-                  html=content,
+    message = Message(subject="User " + current_user.name + " comment was posted on AnthonyDevBlog",
+                  html=mistune.markdown(request.form["content"]),
                   sender="anthony@anthonyshiver.com",
                   recipients=["anthony@anthonyshiver.com"])
     mail.send(message)
